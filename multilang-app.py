@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import Flask, g, redirect, request, render_template, url_for
+from flask import abort, Flask, g, redirect, request, render_template, url_for
 from flask.ext.babel import Babel, gettext # $ pip install flask-babel
 
 # available languages
@@ -25,6 +25,8 @@ def before_request():
         g.lang = request.args.get('lang')
     else:
         g.lang = request.accept_languages.best_match(LANGUAGES.keys())
+    if g.lang not in LANGUAGES:
+        abort(404)
 
 @app.route('/<lang>')
 def lang():
