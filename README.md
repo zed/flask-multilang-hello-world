@@ -1,7 +1,8 @@
 Show response in user language.
 
-Use HTTP Accept-Languages header (most browsers allow to configure
-it. The default value comes from OS).
+Use language specified in the url (in the path or as a `lang` query
+parameter) or in HTTP `Accept-Languages` header (most browsers allow to
+configure it. The default value comes from OS).
 
 Based on the tutorial:
 http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xiv-i18n-and-l10n
@@ -30,7 +31,7 @@ To start the debug applicaiton:
 
 and visit http://localhost:28015/
 
-To test the redirection, visit http://localhost:28015/redirect
+To test the redirection, visit http://localhost:28015/ru/redirect
 
 ### How to add a new translation
 
@@ -46,6 +47,5 @@ and update available `LANGUAGES` dict in `multilang-app.py`.
 
 ### TODO
 
-- set language in HTTP GET hl parameter/url path
 - set language via cookies
 - set language in session var

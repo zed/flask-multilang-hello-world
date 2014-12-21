@@ -14,21 +14,31 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    return request.accept_languages.best_match(LANGUAGES.keys())
+    return g.get('lang', 'en')
 
 @app.before_request
 def before_request():
-    g.locale = get_locale()
+    if request.view_args and 'lang' in request.view_args:
+        g.lang = request.view_args['lang']
+        request.view_args.pop('lang')
+    elif request.args.get('lang'):
+        g.lang = request.args.get('lang')
+    else:
+        g.lang = request.accept_languages.best_match(LANGUAGES.keys())
+
+@app.route('/<lang>')
+def lang():
+    return render_template('index.html', who=gettext('world'))
 
 @app.route('/')
 def index():
-    return render_template('index.html', who=gettext('world'))
+    return redirect(url_for('lang', lang=g.lang))
 
-@app.route('/redirect')
+@app.route('/<lang>/redirect')
 def redirected():
-    if g.locale == 'ru':
-        return redirect(url_for('index'))
-    return 'no redirect'
+    if g.lang == 'ru':
+        return redirect(url_for('index', lang=g.lang))
+    return gettext('no redirect')
 
 if __name__=="__main__":
     app.run(debug=True, port=28015, host='localhost')
