@@ -45,6 +45,13 @@ edit `.po` file to provide the translation then build it (to get `.mo` files):
 
 and update available `LANGUAGES` dict in `multilang-app.py`.
 
+### How to deploy on heroku
+
+    $ heroku login
+    $ heroku create
+    $ git push heroku master
+    $ heroku open  # open browser
+
 ### TODO
 
 - set language via cookies
