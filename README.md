@@ -50,6 +50,7 @@ and update available `LANGUAGES` dict in `multilang-app.py`.
     $ heroku login
     $ heroku create
     $ git push heroku master
+    $ heroku ps:scale web=1  # make sure it's running
     $ heroku open  # open browser
 
 ### TODO
