@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from flask import abort, Flask, g, redirect, request, render_template, url_for
-from flask.ext.babel import Babel, gettext # $ pip install flask-babel
+from flask_babel import Babel, gettext  # $ pip install flask-babel
 
 # available languages
 LANGUAGES = {
@@ -12,9 +12,11 @@ LANGUAGES = {
 app = Flask(__name__)
 babel = Babel(app)
 
+
 @babel.localeselector
 def get_locale():
     return g.get('lang', 'en')
+
 
 @app.before_request
 def before_request():
@@ -28,13 +30,16 @@ def before_request():
     if g.lang not in LANGUAGES:
         abort(404)
 
+
 @app.route('/<lang>')
 def lang():
     return render_template('index.html', who=gettext('world'))
 
+
 @app.route('/')
 def index():
     return redirect(url_for('lang', lang=g.lang))
+
 
 @app.route('/<lang>/redirect')
 def redirected():
@@ -42,5 +47,6 @@ def redirected():
         return redirect(url_for('index', lang=g.lang))
     return gettext('no redirect')
 
-if __name__=="__main__":
+
+if __name__ == "__main__":
     app.run(debug=True, port=28015, host='localhost')
