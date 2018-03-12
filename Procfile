@@ -1,0 +1,1 @@
+web: gunicorn multilang-app:app --log-file=-
