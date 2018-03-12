@@ -15,7 +15,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale():
-    return g.get('lang', 'en')
+    return g.lang
 
 
 @app.before_request
@@ -26,7 +26,7 @@ def before_request():
     elif request.args.get('lang'):
         g.lang = request.args.get('lang')
     else:
-        g.lang = request.accept_languages.best_match(LANGUAGES.keys())
+        g.lang = request.accept_languages.best_match(LANGUAGES.keys()) or 'en'
     if g.lang not in LANGUAGES:
         abort(404)
 
