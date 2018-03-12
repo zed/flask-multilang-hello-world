@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from flask import abort, Flask, g, redirect, request, render_template, url_for
-from flask_babel import Babel, gettext  # $ pip install flask-babel
+import os
+from flask import (abort, Flask, g, redirect, request,
+                   render_template, send_from_directory, url_for)
+from flask_babel import Babel, gettext as _  # $ pip install flask-babel
 
 # available languages
 LANGUAGES = {
@@ -33,7 +35,7 @@ def before_request():
 
 @app.route('/<lang>')
 def lang():
-    return render_template('index.html', who=gettext('world'))
+    return render_template('index.html', who=_('world'))
 
 
 @app.route('/')
@@ -45,7 +47,13 @@ def index():
 def redirected():
     if g.lang == 'ru':
         return redirect(url_for('index', lang=g.lang))
-    return gettext('no redirect')
+    return _('no redirect')
+
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               _('favicon.ico'), mimetype='image/vnd.microsoft.icon')
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-03-12 22:34+0300\n"
+"POT-Creation-Date: 2018-03-12 23:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.3\n"
 
-#: multilang-app.py:36
+#: multilang-app.py:38
 msgid "world"
 msgstr ""
 
-#: multilang-app.py:48
+#: multilang-app.py:50
 msgid "no redirect"
+msgstr ""
+
+#: multilang-app.py:56 templates/index.html:3
+msgid "favicon.ico"
 msgstr ""
 
 #: templates/index.html:2
 msgid "Multilanguage app"
 msgstr ""
 
-#: templates/index.html:3
+#: templates/index.html:4
 #, python-format
 msgid "Hello %(who)s!"
 msgstr ""

@@ -13,11 +13,11 @@ Install:
 
     $ pip install flask flask-babel
 
-Create `messages.pot`:
+Create/Update `messages.pot` (if any of `.py` or templates files have been changed):
 
     $ pybabel extract -F babel.cfg -o messages.pot .
 
-Update `.po` files if necessary (if any of `.py` or templates files have been changed):
+Update `.po` files if necessary (if message.pot has changed):
 
     $ pybabel update -i messages.pot -d translations
 
